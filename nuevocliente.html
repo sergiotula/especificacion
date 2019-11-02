@@ -8,11 +8,24 @@
 </head>
 <body>
 <form action=cliente.html>
-Nombre:<input type="text" name="nombre"/><br/>
-Apellido:<input type="text" name="apellido"/><br/>
-DNI:<input type="text" name="dni"/><br/>
-Fecha de nascimiento:<input type="date" name="nascimiento"/><br/>
+Nombre:<input type="text" name="nombre" required/>
+Apellido:<input type="text" name="apellido" required/>
+Domicilio:<input type="text" name="domicilio" required/>
+DNI:<input type="text" name="dni" pattern="[0-9]{6,9}" title="Requiere entre 6 y 9 numeros, sin simbolos" required/>
+Fecha de nascimiento:<input type="date" name="nascimiento" min="1900-01-01" max="2019-12-31" required/><br/>
+
+<span><input type="checkbox" name="tienetarjeta" onchange="habilitarTarjeta(this.checked)">Tarjeta de credito</span>
+<input id="tarjetacontainer" type="number" min="10000000" max="99999999" disabled/></input>
+
+E-Mail:<input type="email" name=user required/>
+Contraseña:<input type="password" name=contra required/>
 <input type="submit" value="Finalizar"/>
 </form>
+
+<script>
+	function habilitarTarjeta(value){
+		document.getElementById("tarjetacontainer").disabled = !value;
+	}
+</script>
 </body>
 </html>

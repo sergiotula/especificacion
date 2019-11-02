@@ -1,16 +1,46 @@
 @CHARSET "ISO-8859-1";
 
+body{
+	margin:0px;
+}
+
 header.cartel{
 	font-size:50px;
 	border-bottom: 1px solid blue;
 	background-color: powderblue;
 	text-align: center;
 }
-button a{
+button a, li a{
 	text-decoration:none;
 	color:black;
 }
 
+ul{
+	list-style-type:none;
+	display:flex;
+	flex-direction: column;
+	margin:10px;
+	width:150px;
+	align-items: stretch;
+	border:2px solid;
+	padding:0px;
+}
+
+li{
+	background-color:azure;
+}
+li~li{
+	border-top: 1px solid darkturquoise;
+}
+li:hover{
+	background-color:ghostwhite;
+	font-style: italic;
+	font-weight: bold;
+}
+li a{
+	display:block;
+	width:100%;
+}
 
 form{
 	display:flex;
@@ -25,4 +55,13 @@ form{
 
 input[type=submit]{
 	align-self:center;
+}
+
+input{
+	margin-bottom:5px;
+}
+
+.cuadro{
+	border:2px solid;
+	margin:10px
 }

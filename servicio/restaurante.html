@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../ReservaWeb.css">
+<script src="../ReservaWeb.js"></script>
+</head>
+<body>
+Seleccione el restaurante:<br/>
+
+<form action="finreserva.html">
+	<input type="text" value="restaurante" name="servicio" style="display:none"/>
+	Restaurante<select name="restaurante">
+		<option value="lafarola">La Farola</option>
+		<option value="lacabrera">La Cabrera</option>
+		<option value="aramburo">Aramburo</option>
+		<option value="kansas">Kansas</option>
+		<option value="carlitos">Carlitos</option>
+		<option value="elcuartito">El Cuartito</option>
+		<option value="lascuartetas">Las Cuartetas</option>
+		<option value="banchero">Banchero</option>
+	</select>
+	<small style="margin-top:10px;">Estos datos tambien pueden ser con combo boxes:</small>
+	Dia<input type="date" name="dia" min="2019-11-01" max="2019-12-31" required>
+	Hora<input type="time" name="hora" required/>
+	<input type="submit" value="Finalizar"/>
+</form>
+</body>
+</html>

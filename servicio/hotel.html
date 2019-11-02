@@ -7,8 +7,21 @@
 <script src="../ReservaWeb.js"></script>
 </head>
 <body>
-Seleccione el hotel:<br/>
-<a href="hotelreserva.html"><button>Sheraton</button></a><br/>
-<a href="hotelreserva.html"><button>Seasons</button></a>
+Reservación de hotel:<br/>
+<form action="finreserva.html">
+	<input type="text" value="hotel" name="servicio" style="display:none"/>
+	Hotel<select name="hotel">
+		<option value="nh">NH</option>
+		<option value="hilton">Hilton</option>
+		<option value="sheraton">Sheraton</option>
+		<option value="intercontinental">Intercontinental</option>
+		<option value="fourseasons">Four Seasons</option>
+		<option value="hyatt">Hyatt</option>
+	</select>
+	Desde el día: <input type="date" name="desde" min="2019-11-01" max="2019-12-31" required/>
+	Cantidad de días: <input type="number" name="dias" value=1 min=1 max=999 title="Cantidad en numeros, límite 999" required/>
+	<input type="submit" value="Finalizar"/>
+</form>
+
 </body>
 </html>

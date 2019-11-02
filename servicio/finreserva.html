@@ -7,7 +7,90 @@
 <script src="../ReservaWeb.js"></script>
 </head>
 <body>
-Gracias por su compra<br/>
-<a href="../cliente.html"><button>Volver</button></a>
+Continua con su compra?<br/>
+<a href="../nuevareserva.html"><button onclick="otraReserva()">Crear otra reserva</button></a><br/>
+<a href="../cliente.html"><button onclick="terminarReserva()">Finalizar</button></a><br/>
+
+<div class="cuadro">
+	<div>Información debug:</div>
+	ServicioValue<div id="nombreservicio" style="padding-left:10px"></div>
+	InformacionValue<div id="informacion"style="padding-left:10px"></div>
+</div>
+<div class="cuadro">
+	En caso de no tener tarjeta de credito se debe realizar una transacción bancaria.
+</div>
+
+
+
+<script>
+	//Obtener los valores de la ultima compra
+	var urlParams = new URLSearchParams(window.location.search);
+	document.getElementById("nombreservicio").innerHTML = urlParams.get("servicio");
+	var info = "";
+	//Utilizo la url para obtener los datos de la reserva
+	switch(urlParams.get("servicio")){
+		case "hotel":
+			info = urlParams.get("hotel");
+			//Agregar aqui otros datos relevantes
+			info += ", "+ urlParams.get("desde");
+			info += " / "+ urlParams.get("dias");
+			break;
+		case "cine":
+			info = urlParams.get("cine");
+			break;
+		case "vehiculo":
+			info = urlParams.get("vehiculo");
+			break;
+		case "vuelo":
+			info = urlParams.get("vuelo");
+			break;
+		case "restaurante":
+			info = urlParams.get("restaurante");
+			break;
+	}
+	//Muestro cuales son los datos de la reserva
+	document.getElementById("informacion").innerHTML = info;
+	
+	//Tambien se puede obtener la informacion de esta manera para el nombre de la empresa
+	var nombreDeEmpresa = urlParams.get(urlParams.get("servicio"));
+
+</script>
+
+
+
+
+<script>
+// Funciones de los botones
+function otraReserva(){
+	/* Ejemplo: guardar en sesión temporal
+	 * Guardar con sessionStorage.nombreVariable
+	 * Todo se guarda como string asique se debe usar Parse
+	 */
+	//Si ya existe la variable, entonces le sumo +1
+	if(sessionStorage.reservaCount){
+		sessionStorage.reservaCount = Number(sessionStorage.reservaCount) + 1;
+	}else{
+	//Si no existe, entonces la creo con valor de 2
+		sessionStorage.reservaCount = 2;
+	}
+	
+}
+
+function terminarReserva(){
+	//Si no existe la variable entonces hice una sola reserva
+	if(!sessionStorage.reservaCount){
+		alert("1 reserva");
+	}else{
+	//Si existe entonces muestro cuantas reservas hay
+		alert(sessionStorage.reservaCount+" reservas");
+	}
+	//Destruir la variable
+	sessionStorage.removeItem("reservaCount");
+	//Opcionalmente en lugar de destruirla se puede
+	//  hacer que tenga valor 0
+	//Se utiliza destruir para aprender estos metodos javascript
+}
+</script>
+
 </body>
 </html>

@@ -7,8 +7,28 @@
 <script src="../ReservaWeb.js"></script>
 </head>
 <body>
-Seleccione el vuelo:<br/>
-<a href="vueloreserva.html"><button>Aerolíneas Argentinas</button></a><br/>
-<a href="vueloreserva.html"><button>Latam</button></a>
+Reservación de vuelo:<br/>
+<form action="finreserva.html">
+	<input type="text" value="vuelo" name="servicio" style="display:none"/>
+	Aerolinea<select name="vuelo">
+		<option value="aeroarg">Aerolíneas Argentinas</option>
+		<option value="flybondi">Fly Bondi</option>
+		<option value="americaair">American Airlines</option>
+		<option value="avianca">Avianca</option>
+		<option value="delta">Delta</option>
+	</select>
+	Destino
+	<select name="destino">
+		<option value="brasil">Brasil</option>
+		<option value="eeuu">Estados Unidos</option>
+		<option value="china">China</option>
+	</select>
+	<small style="margin-top:10px;">Estos datos tambien pueden ser con combo boxes:</small>
+	Dia<input type="date" min="2019-11-01" max="2019-12-31" required>
+	Hora<input type="time" required/>
+	<input type="submit" value="Finalizar"/>
+</form>
+
+
 </body>
 </html>

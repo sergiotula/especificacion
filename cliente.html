@@ -8,13 +8,19 @@
 </head>
 <body>
 	Bienvenido: <span id="nombreusuario"></span><br/>
-	<a href="nuevareserva.html"><button>Crear reservas</button></a><br/>
-	<a href="verreservas.html"><button>Ver reservas</button></a><br/>
-	<a href="index.html"><button>Salir</button></a>
+<ul>
+	<li><a href="nuevareserva.html">Crear reservas</a></li>
+	<li><a href="verreservas.html">Ver reservas</a></li>
+	<li><a href="index.html">Logout</a></li>
+</ul>
 </body>
 
 <script>
-var urlParams = new URLSearchParams(window.location.search);
-document.getElementById("nombreusuario").innerHTML = urlParams.get("nombre");
+	//Ejemplo: obtener los datos en la direccion: ?variable1=value1&variable2=value2
+	var urlParams = new URLSearchParams(window.location.search);
+	//valor = contenedorDeValores.get(nombre de variable)
+	document.getElementById("nombreusuario").innerHTML = urlParams.get("email");
+	//A cualquier elemento html se le puede agregar "id" y obtenerlo por javascript con getElementById("")
+	//El contenido dentro de un elemento html <a>este lugar</a> se obtiene por medio de .innerHTML
 </script>
 </html>

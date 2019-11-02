@@ -7,8 +7,15 @@
 <script src="../ReservaWeb.js"></script>
 </head>
 <body>
-Seleccione el vehículo:<br/>
-<a href="vehiculoreserva.html"><button>Audi</button></a><br/>
-<a href="vehiculoreserva.html"><button>Honda</button></a>
+Reservación de vehículo:<br/>
+<form action="finreserva.html">
+	<input type="text" value="vehiculo" name="servicio" style="display:none"/>
+	Vehiculo<select name="vehiculo">
+		<option value="audi">Audi</option>
+		<option value="honda">Honda</option>
+	</select>
+	<input type="submit" value="Finalizar"/>
+</form>
+
 </body>
 </html>
