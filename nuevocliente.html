@@ -13,14 +13,18 @@ Apellido:<input type="text" name="apellido" required/>
 Domicilio:<input type="text" name="domicilio" required/>
 DNI:<input type="text" name="dni" pattern="[0-9]{6,9}" title="Requiere entre 6 y 9 numeros, sin simbolos" required/>
 Fecha de nascimiento:<input type="date" name="nascimiento" min="1900-01-01" max="2019-12-31" required/><br/>
-
 <span><input type="checkbox" name="tienetarjeta" onchange="habilitarTarjeta(this.checked)">Tarjeta de credito</span>
 <input id="tarjetacontainer" type="number" min="10000000" max="99999999" disabled/></input>
-
 E-Mail:<input type="email" name=user required/>
 Contraseña:<input type="password" name=contra required/>
+Referido:<input type="text" name=referido/>
 <input type="submit" value="Finalizar"/>
 </form>
+
+<div class="cuadro">
+	Los clientes que refieran a alguien para que se registre en la aplicación recibirán,<br/>
+	luego de que el nuevo cliente realice su primer reserva, la bonificación de 3 reservas dentro del país.
+</div>
 
 <script>
 	function habilitarTarjeta(value){
