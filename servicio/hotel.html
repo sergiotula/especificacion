@@ -2,9 +2,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Todo a un click</title>
 <link rel="stylesheet" type="text/css" href="../ReservaWeb.css">
+
+<script src="datetimepicker.js"></script>
+
 <script src="../ReservaWeb.js"></script>
+
+
+
+
 </head>
 <body>
 Reservación de hotel:<br/>
@@ -18,7 +25,15 @@ Reservación de hotel:<br/>
 		<option value="fourseasons">Four Seasons</option>
 		<option value="hyatt">Hyatt</option>
 	</select>
-	Desde el día: <input type="date" name="desde" min="2019-11-01" max="2019-12-31" required/>
+	Desde el día: 
+			<input type="Text" id="demo1" maxlength="25" size="25">
+	  		<a href="javascript:NewCal('demo1','ddmmmyyyy',false,24)">
+	  		<img src="http://enatacion.com/wp-content/uploads/2015/01/icono-calendario-286x300.png" width="16" height="16" border="0" alt="Pick a date"></a>
+	Hasta el día: 
+			<input type="Text" id="demo2" maxlength="25" size="25">
+	  		<a href="javascript:NewCal('demo2','ddmmmyyyy',false,24)">
+	  		<img src="http://enatacion.com/wp-content/uploads/2015/01/icono-calendario-286x300.png" width="16" height="16" border="0" alt="Pick a date"></a>
+		
 	Cantidad de días: <input type="number" name="dias" value=1 min=1 max=999 title="Cantidad en numeros, límite 999" required/>
 	<input type="submit" value="Finalizar"/>
 </form>
@@ -26,5 +41,8 @@ Reservación de hotel:<br/>
 <div class="cuadro">
 	Los hoteles poseen distintas características de acuerdo a su cantidad de estrellas.
 </div>
+
+
+
 </body>
 </html>
