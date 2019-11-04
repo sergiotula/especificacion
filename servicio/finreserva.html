@@ -40,12 +40,7 @@ Continua con su compra?<br/>
 <div class="cuadro">
 	El tiempo de respuesta en la confirmación de una reserva no puede ser mayor a 5 segundos y la cantidad de pantallas de carga de datos no debe ser mayor a 2.
 </div>
-<div class="cuadro">
-</div>
-<div class="cuadro">
-</div>
-<div class="cuadro">
-</div>
+<div id="testdiv"></div>
 
 
 <script>
@@ -84,7 +79,6 @@ Continua con su compra?<br/>
 
 
 
-
 <script>
 // Funciones de los botones
 function otraReserva(){
@@ -117,6 +111,50 @@ function terminarReserva(){
 	//Se utiliza destruir para aprender estos metodos javascript
 }
 </script>
+
+
+
+<script>
+//Ejemplo: info para empezar a hace el carrito
+
+//Crear una variable para contener un array
+var carrito = [];
+
+//Crear un objeto para guardar en el array
+var unaReserva = {servicio:"hotel", dias:3, fecha:5};
+
+//Guardar el objeto en el array
+carrito.push(unaReserva);
+
+//Iterar por cada propiedad del objeto
+for(propiedad in unaReserva){
+	//el valor de una propiedad es entonces: objeto[propiedad]
+	document.getElementById("testdiv").innerHTML += propiedad +"="+ unaReserva[propiedad]+", ";
+}
+
+</script>
+
+<script>
+//Ejemplo, objetos y sus propiedades
+var unObjeto = {nombre:"uno", otro:"dos"};
+
+//agregarle una nueva propiedad
+unObjeto.cosa = "tres";
+unObjeto.algo = "cuatro";
+
+//remover una propiedad
+delete unObjeto.cosa;
+
+//Iterar sobre las propiedades
+var x = "";
+for(propiedad in unObjeto){
+	x += propiedad + "=" + unObjeto[propiedad] + ", ";
+}
+//x = nombre=uno, otro=dos, algo=cuatro, 
+
+</script>
+
+
 
 </body>
 </html>
