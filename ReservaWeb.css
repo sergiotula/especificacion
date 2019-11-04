@@ -10,6 +10,11 @@ header.cartel{
 	background-color: powderblue;
 	text-align: center;
 }
+footer.cartel{
+	font-size:10px;
+	border-top: 1px solid blue;
+	text-align: right;
+}
 button a, li a{
 	text-decoration:none;
 	color:black;
