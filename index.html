@@ -33,7 +33,7 @@
 
 <button onclick="requestotro()">Prueba PHP
 </button>
-<div id="pruebaAJAX">...
+<div id="pruebaPHP">...
 </div>
 
 <script>
@@ -97,6 +97,7 @@ function ejemploDeMensajeDeConfirmacion(){
 }
 
 function requestalgo(){
+	console.log("hola");
 	//Crear un objeto XMLHttpRequest
 	var xhttp = new XMLHttpRequest();
 	
@@ -120,7 +121,7 @@ function requestalgo(){
 	
 }
 
-function requestalgo(){
+function requestotro(){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
