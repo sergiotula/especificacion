@@ -26,6 +26,7 @@ unFooter.innerHTML = "Texto del footer";
 //Agregar después de que la página se haya cargado
 // para que quedé al final de la página
 window.addEventListener('load', function () {
+	  //Notar que <body> no existe al principio de la carga
 	  document.body.appendChild(unFooter);
 	})
 	

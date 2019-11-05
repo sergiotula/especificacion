@@ -11,10 +11,10 @@
 
 
 </head>
-<body>
+<body onload="miFuncionTest()">
 <form action="cliente.html">
-	E-Mail<input type="email" name="email" required/>
-	Password<input type="password" name="password" required/>
+	E-Mail<input type="email" name="email" onfocus="miFuncionFocus()" required/>
+	Password<input type="password" name="password" onfocus="miFuncionFocus()" required/>
 	<input type="submit" value="Login"></input>
 </form>
 <a href="nuevocliente.html"><button>Nuevo usuario</button></a>
@@ -26,5 +26,114 @@
 	¿¿ Posibilidad de ver productos sin estar logeado ??
 </div>
 
+<button onclick="requestalgo()">Prueba AJAX
+</button>
+<div id="pruebaAJAX">...
+</div>
+
+<button onclick="requestotro()">Prueba PHP
+</button>
+<div id="pruebaAJAX">...
+</div>
+
+<script>
+//Esta funcion se llama en 'onload' de <body>
+function miFuncionTest(){
+	//Crear cookie
+	//document.cookie = "username=John Doe";//Se elimina al cerrar el browser
+	//Crear cookie con fecha de expiracion
+	//document.cookie = "username=John Doe; expires=Sun, 1 Dec 2019 12:00:00 UTC"; //Se en esa fecha
+	//Eliminar cookie
+	//document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	
+}
+
+function setCookie(cname, cvalue, exdays) {
+	  var d = new Date();
+	  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	  var expires = "expires="+ d.toUTCString();
+	  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+	  var name = cname + "=";
+	  var decodedCookie = decodeURIComponent(document.cookie);
+	  var ca = decodedCookie.split(';');
+	  for(var i = 0; i <ca.length; i++) {
+	    var c = ca[i];
+	    while (c.charAt(0) == ' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+}
+function checkCookie() {
+	  var username = getCookie("username");
+	  if (username != "") {
+	   alert("Welcome again " + username);
+	  } else {
+	    username = prompt("Please enter your name:", "");
+	    if (username != "" && username != null) {
+	      setCookie("username", username, 365); //Por 365 dias
+	    }
+	  }
+	}
+
+
+
+//Esta función se llama cuando se selecciona uno de los <input>
+function miFuncionFocus(){
+	
+}
+
+function ejemploDeMensajeDeConfirmacion(){
+	if (confirm("Press a button!")) {
+		  txt = "You pressed OK!";
+		} else {
+		  txt = "You pressed Cancel!";
+		} 
+}
+
+function requestalgo(){
+	//Crear un objeto XMLHttpRequest
+	var xhttp = new XMLHttpRequest();
+	
+	//Setear una funcion en onreadystatechange
+	//readyState=4 -> request finished and response is ready
+	//status=200 -> OK
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			//.responseText: en formato texto
+			//.responseXML: en formate XML
+			document.getElementById("pruebaAJAX").innerHTML = this.responseText;
+			}
+	};
+	
+	//Configurar el tipo de request
+	//open(Method:GET/POST, fileName, isAsync)
+	xhttp.open("GET", "prueba.txt", true);
+	
+	//Enviar el request al server
+	xhttp.send(); 
+	
+}
+
+function requestalgo(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("pruebaPHP").innerHTML = this.responseText;
+			}
+	};
+	
+	xhttp.open("GET", "testphp.php", true);
+	xhttp.send(); 
+	
+}
+
+
+</script>
 </body>
 </html>
