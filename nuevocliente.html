@@ -6,18 +6,19 @@
 <script src="ReservaWeb.js"></script>
 </head>
 <body>
-<form action=cliente.html>
-Nombre:<input type="text" name="nombre" required/>
-Apellido:<input type="text" name="apellido" required/>
-Domicilio:<input type="text" name="domicilio" required/>
-DNI:<input type="text" name="dni" pattern="[0-9]{6,9}" title="Requiere entre 6 y 9 numeros, sin simbolos" required/>
-Fecha de nascimiento:<input type="date" name="nascimiento" min="1900-01-01" max="2019-12-31" required/><br/>
-<span><input type="checkbox" name="tienetarjeta" onchange="habilitarTarjeta(this.checked)">Tarjeta de credito</span>
-<input id="tarjetacontainer" type="number" min="10000000" max="99999999" disabled/></input>
-E-Mail:<input type="email" name=user required/>
-Contraseña:<input type="password" name=contra required/>
-Referido:<input type="text" name=referido/>
-<input type="submit" value="Finalizar"/>
+<form method="post" onsubmit="return existeUsuario()" action="crearusuario.php">
+Nombre:					<input type="text"		name="nombre" required/>
+Apellido:				<input type="text"		name="apellido" required/>
+Domicilio:				<input type="text"		name="domicilio" required/>
+DNI:					<input type="text"		name="dni" pattern="[0-9]{6,9}" title="Requiere entre 6 y 9 numeros, sin simbolos" required/>
+Fecha de nascimiento:	<input type="date"		name="nascimiento" min="1900-01-01" max="2019-12-31" required/><br/>
+<span>					<input type="checkbox"	name="tienetarjeta" onchange="habilitarTarjeta(this.checked)">Tarjeta de credito</span>
+						<input type="number"	name="numerotarjeta" id="tarjetacontainer" min="10000000" max="99999999" disabled/></input>
+E-Mail:					<input type="email"		name="email" id="email" required/>
+<span id="mensajemail" style="display:none; color:red">Email en uso</span>
+Contraseña:				<input type="password"	name="password" required/>
+Referido:				<input type="text"		name="referido" />
+						<input type="submit" value="Finalizar"/>
 </form>
 
 <div class="cuadro">
@@ -25,10 +26,32 @@ Referido:<input type="text" name=referido/>
 	luego de que el nuevo cliente realice su primer reserva, la bonificación de 3 reservas dentro del país.
 </div>
 
+
 <script>
 	function habilitarTarjeta(value){
 		document.getElementById("tarjetacontainer").disabled = !value;
 	}
+	function existeUsuario(){
+		var email = document.getElementById("email").value;
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "usuarios.xml", false);
+		xhttp.send();
+		var xmlDoc = xhttp.responseXML;
+		var x = xmlDoc.getElementsByTagName("Email");
+		var st="";
+		for (i = 0; i <x.length; i++) {
+			if (x[i].childNodes[0].nodeValue == email){
+				//El mail ingresado ya existe
+				document.getElementById("mensajemail").style.display = "inline";
+				return false;
+			} 
+		}
+		document.getElementById("mensajemail").style.display = "none";
+	}
 </script>
+
+
+
+
 </body>
 </html>

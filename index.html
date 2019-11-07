@@ -10,10 +10,11 @@
 <script src="ReservaWeb.js"></script>
 
 </head>
-<body>
-<form method="post" action="testphp.php">
-	E-Mail<input type="email" name="email" value="admin@admin" required/>
-	Password<input type="password" name="password" value="admin" required/>
+<body onload="autocompletar()">
+<form method="post" action="testphp.php" onsubmit="setearcookies(email.value, password.value)">
+	E-Mail<input type="email" name="email" id="email" required/>
+	Password<input type="password" name="password" id="password" required/>
+	<div id="loginvalido" style="color:red; display:none">Mensaje de error</div>
 	<input type="submit" value="Login"></input>
 </form>
 <a href="nuevocliente.html"><button>Nuevo usuario</button></a>
@@ -25,6 +26,44 @@
 </div>
 
 
+
+
+<script>
+function setearcookies(mail, pass){
+	setCookie("nombrelogin", mail, 1);
+	setCookie("passlogin", pass, 1);
+}
+
+function autocompletar(){
+	document.getElementById("email").value = unescape(getCookie("nombrelogin"));
+	document.getElementById("password").value = unescape(getCookie("passlogin"));
+	if(getCookie("loginincorrecto")){
+		document.getElementById("loginvalido").style.display="block";
+		document.getElementById("loginvalido").innerHTML = unescape(getCookie("loginincorrecto"));
+	}
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+ d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+</script>
 
 
 </body>

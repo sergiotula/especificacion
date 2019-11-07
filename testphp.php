@@ -18,36 +18,41 @@
     //Si no encontró coincidencia de mail
     if($nodes == false){
     	//Por ahora, solo lo devuelve a la página principal
+    	setcookie("loginincorrecto", "E-mail_inválido", time() + (60), "/");
     	header("Location:index.html");
+    	return;
     }
-	
-    //Devuelve una lista, pero por contexto solo tomamos el primer elemento
+    
+    //Devuelve una lista de usuarios, pero por contexto solo tomamos el primer elemento
     $result = $nodes[0];
     
     //Comparar que la contraseña sea la correcta
-    if($pass == $result->Datos->Password){
-    	//Redireccionar a la página dependiendo del tipo de Usuario
-    	switch($result->Tipo){
-			case "Cliente":
-				header("Location:cliente.html");
-				break;
-			case "Administrador":
-				header("Location:administrador.html");
-				break;
-			case "Soporte":
-				header("Location:soporte.html");
-				break;
-			case "CEO":
-				header("Location:ceo.html");
-				break;
-			default:
-				echo "Tipo de usuario inválido";
-				break;
-    	}
-    }else{
+    if($pass != $result->Datos->Password){
     	//Contraseña incorrecta
-    	//Por ahora, solo lo devuelve a la página principal
+    	setcookie("loginincorrecto", "Contraseña_incorrecta", time() + (60), "/");
     	header("Location:index.html");
+    	return;
+    }
+	
+    setcookie("loginincorrecto", "", time() - (3600), "/");
+    
+    //Redireccionar a la página dependiendo del tipo de Usuario
+   	switch($result->Tipo){
+		case "Cliente":
+			header("Location:cliente.html");
+			break;
+		case "Administrador":
+			header("Location:administrador.html");
+			break;
+		case "Soporte":
+			header("Location:soporte.html");
+			break;
+		case "CEO":
+			header("Location:ceo.html");
+			break;
+		default:
+			echo "Tipo de usuario inválido";
+			break;
     }
 
     
