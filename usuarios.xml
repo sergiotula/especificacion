@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Usuarios cantidad="2">
+	
+	<Usuario id="1">
+		<Tipo>Cliente</Tipo><Datos><Nombre>Sergio</Nombre><Apellido>Tula</Apellido><Domicilio>Un lugar</Domicilio><Dni>123</Dni><FechaNac>15-04-1987</FechaNac><Tarjeta>999999</Tarjeta><Email>sergiodamiantula@yahoo.com</Email><Password>123</Password><Referido></Referido></Datos>
+		</Usuario>
+	<Usuario id="2">
+		<Tipo>Administrador</Tipo><Datos>
+			<Nombre>Admin</Nombre>
+			<Apellido>Istrador</Apellido>
+			<Email>admin@admin</Email>
+			<Password>admin</Password></Datos>
+		</Usuario></Usuarios>
