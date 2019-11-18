@@ -28,7 +28,7 @@ document.body.appendChild(unHeader);
 
 var unFooter = document.createElement('footer');
 unFooter.className = "cartel";
-unFooter.innerHTML = "Texto del footer";
+unFooter.innerHTML = "Especificacion de Software 2019";
 
 //Agregar después de que la página se haya cargado
 // para que quedé al final de la página

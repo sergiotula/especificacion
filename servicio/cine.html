@@ -10,20 +10,24 @@ Reservación de películas<br/>
 
 <form action="finreserva.html">
 	<input type="text" value="cine" name="servicio" style="display:none"/>
+	
 	Cine<select name="cine">
 		<option value="hoyts">Hoyts</option>
 		<option value="village">Village</option>
 		<option value="Cinemark">Cinemark</option>
 	</select>
+	
 	Pelicula
 	<select name="pelicula">
 		<option value="avengers">Avengers</option>
 		<option value="joker">Joker</option>
 		<option value="terminator">Terminator</option>
 	</select>
-	<small style="margin-top:10px;">Estos datos tambien pueden ser con combo boxes:</small>
+	
+	<small style="margin-top:10px; display:none;">Estos datos tambien pueden ser con combo boxes:</small>
 	Dia<input type="date" name="dia" min="2019-11-01" max="2019-12-31" required>
 	Hora<input type="time" name="hora" required/>
+	
 	<input type="submit" value="Finalizar"/>
 </form>
 </body>

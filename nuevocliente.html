@@ -12,8 +12,8 @@ Apellido:				<input type="text"		name="apellido" required/>
 Domicilio:				<input type="text"		name="domicilio" required/>
 DNI:					<input type="text"		name="dni" pattern="[0-9]{6,9}" title="Requiere entre 6 y 9 numeros, sin simbolos" required/>
 Fecha de nascimiento:	<input type="date"		name="nascimiento" min="1900-01-01" max="2019-12-31" required/><br/>
-<span>					<input type="checkbox"	name="tienetarjeta" onchange="habilitarTarjeta(this.checked)">Tarjeta de credito</span>
-						<input type="number"	name="numerotarjeta" id="tarjetacontainer" min="10000000" max="99999999" disabled/></input>
+<span>					<input type="checkbox"	name="tienetarjeta" onchange="habilitarTarjeta(this.checked)" checked>Tarjeta de credito</span>
+						<input type="number"	name="numerotarjeta" id="tarjetacontainer" min="10000000" max="99999999" required/></input>
 E-Mail:					<input type="email"		name="email" id="email" required/>
 <span id="mensajemail" style="display:none; color:red">Email en uso</span>
 Contraseña:				<input type="password"	name="password" required/>
@@ -25,7 +25,9 @@ Referido:				<input type="text"		name="referido" />
 	Los clientes que refieran a alguien para que se registre en la aplicación recibirán,<br/>
 	luego de que el nuevo cliente realice su primer reserva, la bonificación de 3 reservas dentro del país.
 </div>
-
+<div class="cuadro">
+	Bug: Recargar la página causa problemas entre el checkbox y el input(tarjeta)
+</div>
 
 <script>
 	function habilitarTarjeta(value){
@@ -43,10 +45,12 @@ Referido:				<input type="text"		name="referido" />
 			if (x[i].childNodes[0].nodeValue == email){
 				//El mail ingresado ya existe
 				document.getElementById("mensajemail").style.display = "inline";
+				alert("E-mail se encuentra en uso");
 				return false;
 			} 
 		}
 		document.getElementById("mensajemail").style.display = "none";
+		alert("Usuario creado");
 	}
 </script>
 

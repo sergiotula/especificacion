@@ -16,6 +16,7 @@
 Reservación de hotel:<br/>
 <form action="finreserva.html">
 	<input type="text" value="hotel" name="servicio" style="display:none"/>
+	
 	Hotel<select name="hotel">
 		<option value="nh">NH</option>
 		<option value="hilton">Hilton</option>
@@ -25,24 +26,22 @@ Reservación de hotel:<br/>
 		<option value="hyatt">Hyatt</option>
 	</select>
 	Desde el día: 
-			<input type="date" id="diaDesde" min="2019-11-01" max="2019-12-31" required>
-
+			<input type="date" id="diaDesde" name="desde" min="2019-11-01" max="2019-12-31" required>
+	
+	<!-- 
 	Hasta el día: 
 			<input type="date" id="diaHasta" min="2019-11-01" max="2019-12-31" required>
-	
+	 -->
 	Cantidad de días: <input type="number" name="dias" value=1 min=1 max=999 title="Cantidad en numeros, límite 999" required/>
 	
 	
-	
-	
-	<input type="text" value="habitacion" name="servicio" style="display:none"/>
-	Hotel<select name="habitacion">
-		<option value="nh">Habitacion 1</option>
-		<option value="hilton">Habitacion 2</option>
-		<option value="sheraton">Habitacion 3</option>
-		<option value="intercontinental">Habitacion 4</option>
-		<option value="fourseasons">Habitacion 5</option>
-		<option value="hyatt">Habitacion 6 (no disponible)</option>
+	Habitación<select name="habitacion">
+		<option value="1">Habitacion 1</option>
+		<option value="2">Habitacion 2</option>
+		<option value="3">Habitacion 3</option>
+		<option value="4">Habitacion 4</option>
+		<option value="5">Habitacion 5</option>
+		<option value="6">Habitacion 6 (no disponible)</option>
 	</select>
 	
 	

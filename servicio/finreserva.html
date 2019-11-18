@@ -10,11 +10,24 @@ Continua con su compra?<br/>
 <a href="../nuevareserva.html"><button onclick="otraReserva()">Crear otra reserva</button></a><br/>
 <a href="../cliente.html"><button onclick="terminarReserva()">Finalizar</button></a><br/>
 
-<div class="cuadro">
+
+
+
+
+
+
+<div class="esc, cuadro">
 	<div>Información debug:</div>
 	ServicioValue<div id="nombreservicio" style="padding-left:10px"></div>
 	InformacionValue<div id="informacion"style="padding-left:10px"></div>
 </div>
+
+<div id="full">
+
+
+</div>
+
+
 <div class="cuadro">
 	Mostrar el paquete del carrito hasta el momento.
 </div>
@@ -47,25 +60,32 @@ Continua con su compra?<br/>
 	var urlParams = new URLSearchParams(window.location.search);
 	document.getElementById("nombreservicio").innerHTML = urlParams.get("servicio");
 	var info = "";
+	var unaReserva = {};
 	//Utilizo la url para obtener los datos de la reserva
 	switch(urlParams.get("servicio")){
 		case "hotel":
-			info = urlParams.get("hotel");
+			info = "Hotel=" + urlParams.get("hotel");
 			//Agregar aqui otros datos relevantes
-			info += ", "+ urlParams.get("desde");
-			info += " / "+ urlParams.get("dias");
-			break;
-		case "cine":
-			info = urlParams.get("cine");
-			break;
-		case "vehiculo":
-			info = urlParams.get("vehiculo");
+			info += ", Desde=" + urlParams.get("desde");
+			info += ", Dias="+ urlParams.get("dias");
+			info += ", Habitacion="+urlParams.get("habitacion");
+			unaReserva = {servicio:"Hotel", hotel:urlParams.get("hotel"), desde:urlParams.get("desde"), dias:urlParams.get("dias"), habitacion:urlParams.get("habitacion")};
 			break;
 		case "vuelo":
 			info = urlParams.get("vuelo");
+			unaReserva = {servicio:"Vuelo", vuelo: urlParams.get("vuelo"), destino: urlParams.get("destino"), dia: urlParams.get("dia"), hora: urlParams.get("hora")};
+			break;
+		case "cine":
+			info = urlParams.get("cine");
+			unaReserva = {servicio:"Cine", cine: urlParams.get("cine"), pelicula: urlParams.get("pelicula"), dia: urlParams.get("dia"), hora: urlParams.get("hora")};
 			break;
 		case "restaurante":
 			info = urlParams.get("restaurante");
+			unaReserva = {servicio:"Restaurante", restaurante: urlParams.get("restaurante"), dia: urlParams.get("dia"), hora: urlParams.get("hora")};
+			break;
+		case "vehiculo":
+			info = urlParams.get("vehiculo");
+			unaReserva = {servicio:"Vehiculo", vehiculo: urlParams.get("vehiculo")};
 			break;
 	}
 	//Muestro cuales son los datos de la reserva
@@ -73,7 +93,28 @@ Continua con su compra?<br/>
 	
 	//Tambien se puede obtener la informacion de esta manera para el nombre de la empresa
 	var nombreDeEmpresa = urlParams.get(urlParams.get("servicio"));
-
+	
+	reservas = JSON.parse(localStorage.getItem("reservas"));
+	if(! Array.isArray(reservas)){
+		reservas = [];
+	}
+	
+	reservas.push(unaReserva);
+	localStorage.setItem("reservas",JSON.stringify(reservas));
+	
+	//document.getElementById("full").innerHTML = localStorage.reservas;
+	reservas.forEach(dibujarTabla);
+	
+	function dibujarTabla(item, index){
+		
+		string = "<li>"+(index+1)+" : ";
+		for (property in item) {
+			string += property +"="+item[property]+",  ";
+		}
+		string += "</li>";
+		
+		document.getElementById("full").innerHTML += string;
+	}
 </script>
 
 
@@ -92,7 +133,8 @@ function otraReserva(){
 	//Si no existe, entonces la creo con valor de 2
 		sessionStorage.reservaCount = 2;
 	}
-	
+	unaReserva = {};
+	reservas = [];
 }
 
 function terminarReserva(){
@@ -108,6 +150,7 @@ function terminarReserva(){
 	//Opcionalmente en lugar de destruirla se puede
 	//  hacer que tenga valor 0
 	//Se utiliza destruir para aprender estos metodos javascript
+	localStorage.removeItem("reservas");
 }
 </script>
 
@@ -128,7 +171,7 @@ carrito.push(unaReserva);
 //Iterar por cada propiedad del objeto
 for(propiedad in unaReserva){
 	//el valor de una propiedad es entonces: objeto[propiedad]
-	document.getElementById("testdiv").innerHTML += propiedad +"="+ unaReserva[propiedad]+", ";
+	//document.getElementById("testdiv").innerHTML += propiedad +"="+ unaReserva[propiedad]+", ";
 }
 
 </script>
