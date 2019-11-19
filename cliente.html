@@ -5,13 +5,16 @@
 <link rel="stylesheet" type="text/css" href="ReservaWeb.css">
 <script src="ReservaWeb.js"></script>
 </head>
-<body>
+<body onload="autocompletar()">
 	Bienvenido: <span id="nombreusuario"></span><br/>
 <ul>
 	<li><a href="nuevareserva.html">Crear reservas</a></li>
 	<li><a href="verreservas.html">Ver reservas</a></li>
+	<li><a href="#">Ver preferencias</a></li>
+	<li><a href="#">Completar encuesta</a></li>
 	<li><a href="index.html">Logout</a></li>
 </ul>
+<div id="reserva" style="color:blue;font-size:22px;"></div>
 
 <div class="cuadro">
 	Se debe realizar una clase de encuesta para saber las preferencias a la hora de buscar reservas
@@ -28,7 +31,11 @@
 	//Ejemplo: obtener los datos en la direccion: ?variable1=value1&variable2=value2
 	var urlParams = new URLSearchParams(window.location.search);
 	//valor = contenedorDeValores.get(nombre de variable)
-	document.getElementById("nombreusuario").innerHTML = urlParams.get("email");
+	if(urlParams.get("finreserva")=="true"){
+		document.getElementById("reserva").innerHTML = "Reserva realizada";
+	}else{
+		document.getElementById("reserva").innerHTML = "";
+	}
 	//A cualquier elemento html se le puede agregar "id" y obtenerlo por javascript con getElementById("")
 	//El contenido dentro de un elemento html <a>este lugar</a> se obtiene por medio de .innerHTML
 </script>
