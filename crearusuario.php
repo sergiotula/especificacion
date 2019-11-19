@@ -71,7 +71,7 @@ $dom->save("usuarios.xml");
 //setcookie($cookie_name, $cookie_value, time() + (60), "/"); // 60 = 1 min
 setcookie("nombrelogin", $email, time() + (60), "/"); // 60 = 1 min
 setcookie("passlogin", $password, time() + (60), "/"); // 60 = 1 min
-header("Location:index.html");
+header("Location:index.html?usuariocreado=true");
 
 
 

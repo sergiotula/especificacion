@@ -8,7 +8,7 @@
 <body>
 Continua con su compra?<br/>
 <a href="../nuevareserva.html"><button onclick="otraReserva()">Crear otra reserva</button></a><br/>
-<a href="../cliente.html"><button onclick="terminarReserva()">Finalizar</button></a><br/>
+<a href="../cliente.html?finreserva=true"><button onclick="terminarReserva()">Finalizar</button></a><br/>
 
 
 
@@ -106,14 +106,21 @@ Continua con su compra?<br/>
 	reservas.forEach(dibujarTabla);
 	
 	function dibujarTabla(item, index){
-		
-		string = "<li>"+(index+1)+" : ";
+		mistring = "<table><tr>";
 		for (property in item) {
-			string += property +"="+item[property]+",  ";
+			mistring += "<th>";
+			mistring += property;
+			mistring += "</th>";
 		}
-		string += "</li>";
-		
-		document.getElementById("full").innerHTML += string;
+		mistring += "</tr><tr>"
+		for (property in item) {
+			mistring += "<td>";
+			mistring += item[property];
+			mistring += "</td>";
+		}
+		mistring += "</tr>"
+		mistring += "</table>"
+		document.getElementById("full").innerHTML += mistring;
 	}
 </script>
 
@@ -140,10 +147,10 @@ function otraReserva(){
 function terminarReserva(){
 	//Si no existe la variable entonces hice una sola reserva
 	if(!sessionStorage.reservaCount){
-		alert("1 reserva");
+		//alert("1 reserva");
 	}else{
 	//Si existe entonces muestro cuantas reservas hay
-		alert(sessionStorage.reservaCount+" reservas");
+		//alert(sessionStorage.reservaCount+" reservas");
 	}
 	//Destruir la variable
 	sessionStorage.removeItem("reservaCount");

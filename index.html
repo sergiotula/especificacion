@@ -11,6 +11,7 @@
 
 </head>
 <body onload="autocompletar()">
+<div id="usuariocreado" style="color:blue;font-size:22px;"></div>
 <form method="post" action="testphp.php" onsubmit="setearcookies(email.value, password.value)">
 	E-Mail<input type="email" name="email" id="email" required/>
 	Password<input type="password" name="password" id="password" required/>
@@ -38,9 +39,14 @@ function autocompletar(){
 	document.getElementById("email").value = unescape(getCookie("nombrelogin"));
 	document.getElementById("password").value = unescape(getCookie("passlogin"));
 	if(getCookie("loginincorrecto")){
-		alert("Usuario inválido");
+		//alert("Usuario inválido");
 		document.getElementById("loginvalido").style.display="block";
 		document.getElementById("loginvalido").innerHTML = unescape(getCookie("loginincorrecto"));
+	}
+	
+	var urlParams = new URLSearchParams(window.location.search);
+	if(urlParams.get("usuariocreado")=="true"){
+		document.getElementById("usuariocreado").innerHTML="Usuario creado";
 	}
 }
 
